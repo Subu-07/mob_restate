@@ -3,6 +3,7 @@ import {useFonts} from "expo-font"
 import "./global.css"
 import { useEffect } from "react";
 import { hideAsync } from "expo-splash-screen";
+import GlobalProvider from "@/lib/global-provider";
 export default function RootLayout() {
   const [fontloaded]=useFonts({
     "Rubik-Bold": require("../assets/fonts/Rubik-Bold.ttf"),
@@ -18,5 +19,9 @@ export default function RootLayout() {
     }
   },[fontloaded]);
    if(!fontloaded) return null;
-  return <Stack screenOptions={{headerShown:false}} />;
+  return (
+    <GlobalProvider>
+      <Stack screenOptions={{headerShown:false}} />
+    </GlobalProvider>
+);
 }
